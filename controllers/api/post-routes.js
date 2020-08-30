@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
             'entry_text',
             'created_at'
         ],
+        order: [['created_at', 'DESC']],
         include: [
             { 
                 model: User,
@@ -56,17 +57,62 @@ router.get('/:id', (req, res) => {
 
 // create post
 router.post('/', (req, res) => {
-
+    Post.create({
+        title: req.body.title,
+        entry_text: req.body.entry_text,
+        user_id: req.body.user_id
+    })
+    .then(postData => res.json(postData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 // update post
 router.put('/:id', (req, res) => {
-
+    Post.update(
+        {
+            title: req.body.title,
+            entry_text: req.body.entry_text
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+    .then(postData => {
+        if (!postData) {
+            res.status(404).json({ message: 'No post found with this id number! '});
+            return;
+        }
+        res.json(postData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 // delete post
 router.delete('/:id', (req, res) => {
-
+    Post.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(postData => {
+        if (!postData) {
+            res.status(404).json({ message: 'No post found with this id number!' });
+            return;
+        }
+        res.json(postData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 module.exports = router;
