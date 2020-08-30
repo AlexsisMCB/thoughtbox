@@ -36,7 +36,6 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     User.create({
         username: req.body.username,
-        email: req.body.email,
         password: req.body.password
     })
     .then(userData => res.json(userData))
@@ -46,9 +45,38 @@ router.post('/', (req, res) => {
     });
 });
 
+// login route
+router.post('/login', (req, res) => {
+    User.findOne({
+        where: {
+            username: req.body.username
+        }
+    })
+    .then(userData => {
+        if (!userData) {
+            res.status(404).json({ message: 'No user was found with this username!' });
+            return;
+        }
+
+
+        const validPassword = userData.checkPassword(req.body.password);
+        if (!validPassword) {
+            res.status(400).json({ message: 'Password is incorrect! Try again!' });
+            return;
+        }
+
+        res.json({ user: userData, message: 'Login Successful!' });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
 // update user info
 router.put('/:id', (req, res) => {
     User.update(req.body, {
+        individualHooks: true,
         where: {
             id: req.params.id
         }
