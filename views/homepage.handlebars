@@ -1,0 +1,17 @@
+<ol>
+    {{#each allPosts as |post|}}
+    <li>
+        <article>
+            <div>
+                <a href="/posts/:{{post.id}}" target="_blank">{{post.title}}</a>
+                by {{post.user.username}}
+            </div>
+            <div>
+                created on: {{post.created_at}}
+                </br>
+                {{post.comments.length}} comment(s)
+            </div>
+        </article>
+    </li>
+    {{/each}}
+</ol>
