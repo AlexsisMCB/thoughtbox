@@ -1,0 +1,16 @@
+<article>
+    <h3>Edit Post</h3>
+    <form class="edit">
+        <div>
+            <input name="entry-title" type="text" value="{{post.title}}" />
+        </div>
+        <div>
+            <textarea name="entry-text">{{post.entry_text}}</textarea>
+        </div>
+        <button type="submit">Save Updated Post</button>
+        <button type="button" class="delete-btn">Delete post</button>
+    </form>
+</article>
+
+<script src="/javascript/edit.js"></script>
+<script src="/javascript/delete.js"></script>
