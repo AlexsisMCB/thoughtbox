@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a blog site for fellow techs/developers! Feel free to share, ask questions, or even comment and give feedback!
+This is a blog site for fellow techs/developers! Feel free to share, ask questions, or even comment and give feedback on this website!
 
 ## Views
 ![image](https://user-images.githubusercontent.com/64288510/91678516-68953d00-eb0b-11ea-981a-3c00f06a8821.png)
