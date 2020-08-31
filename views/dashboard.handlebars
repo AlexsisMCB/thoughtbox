@@ -1,0 +1,30 @@
+<section>
+    <h2>Create a New Blog Entry</h2>
+    <form class="new-entry">
+        <div>
+            <label for="entry-title">Title</label></br>
+            <input type="text" id="entry-title" name="entry-title" />
+        </div>
+        <div>
+            <label for="entry-text">Entry Content</label></br>
+            <textarea name="entry-text" class="entry-text"></textarea>
+        </div>
+        <button type="submit">Post</button>
+    </form>
+</section>
+
+{{#if posts.length}}
+<section>
+    <h2>Current Posts by You</h2>
+    <ol>
+        {{#each posts as |post|}}
+        <li>
+            {{> post post}}
+            <a href="/dashboard/edit/{{post.id}}">Edit Post</a>
+        </li>
+        {{/each}}
+    </ol>
+</section>
+{{/if}}
+
+<script src="/javascript/create-post.js"></script>
