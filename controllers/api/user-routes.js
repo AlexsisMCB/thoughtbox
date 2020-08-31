@@ -57,7 +57,7 @@ router.get('/:id', (req, res) => {
 });
 
 // create user
-router.post('/', auth, (req, res) => {
+router.post('/', (req, res) => {
     User.create({
         username: req.body.username,
         password: req.body.password
@@ -86,10 +86,9 @@ router.post('/login', (req, res) => {
     })
     .then(userData => {
         if (!userData) {
-            res.status(404).json({ message: 'No user was found with this username!' });
+            res.status(400).json({ message: 'No user was found with this username!' });
             return;
         }
-
 
         const validPassword = userData.checkPassword(req.body.password);
         if (!validPassword) {
@@ -104,10 +103,6 @@ router.post('/login', (req, res) => {
 
             res.json({ user: userData, message: 'Login Successful!' });
         });
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
     });
 });
 

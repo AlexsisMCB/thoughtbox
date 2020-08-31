@@ -5,7 +5,7 @@ async function editorButton(event) {
         window.location.toString().split('/').length - 1
     ];
     const title = document.querySelector('input[name="entry-title"]').value.trim();
-    const entry_text = document.querySelector('textarea[name="entry-text"]').value();
+    const entry_text = document.querySelector('textarea[name="entry-text"]').value;
     
     const response = await fetch(`/api/posts/${id}`, {
         method: 'PUT',
@@ -26,4 +26,4 @@ async function editorButton(event) {
 
 }
 
-document.querySelector('.edit').addEventListener('submit', editorButton);
+document.querySelector('.edit-post').addEventListener('submit', editorButton);

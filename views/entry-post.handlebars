@@ -1,21 +1,20 @@
-<article>
+<article class="single-entry-post">
     <div>
-        <h1>{{post.title}}</h1>
+        <h2>{{post.title}}</h2>
     </div>
     <div>
         {{post.entry_text}}
     </div>
     </br>
     <div>
-        <p>{{post.user.username}} on {{format_date post.created_at}}</p>
-        <p>{{post.comments.length}} comment(s)</p>
+        <p><span class="username">{{post.user.username}}</span> on {{format_date post.created_at}}</p>
     </div>
 </article>
 
 {{#if loggedIn}}
 <form class="comment-area">
     <div>
-        <textarea name="comment-entry"></textarea>
+        <textarea name="comment-entry" class="comment-entry"></textarea>
     </div>
     <div>
         <button type="submit">Submit Comment</button>
